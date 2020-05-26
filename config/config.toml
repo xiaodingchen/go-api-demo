@@ -1,0 +1,22 @@
+
+name = "testLocal"
+env = "prd"
+
+[server]
+	addr = ":8888"
+	readTimeout = 5000
+	writeTimeout = 10000
+	max_concurrency = 300
+	debug = false
+
+[log]
+	level = -1
+	outputPaths = ["stdout"]
+	dev = true
+	requestLog = "/data/log/api.log"
+	traceLog = "/data/log/trace.log"
+	trace_rate = 1
+
+
+
+
