@@ -23,25 +23,26 @@ var api = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		ex, _ := os.Executable()
 		addr := viper.GetString("server.addr")
+		debug := viper.GetBool("server.debug")
 		log.Println("api service start, addr:", addr, "time:", time.Now().Format(utils.DateFormatTimestamp))
 		overseer.Run(overseer.Config{
 			Address:          addr,
 			Program:          prog,
 			Fetcher:          &fetcher.File{Path: ex},
 			TerminateTimeout: 5 * time.Second,
-			Debug:            true,
+			Debug:            debug,
 		})
 	},
 }
 
 func prog(state overseer.State) {
 	log.Println("api service run, addr:", state.Address, "time:", state.StartedAt.Format(utils.DateFormatTimestamp))
+	// 引入gin框架
 	debug := viper.GetBool("server.debug")
 	if !debug {
 		gin.SetMode(gin.ReleaseMode)
 	}
-
-	// 引入gin框架
+	//gin.DefaultWriter = new(utils.DefaultGinWriter)
 	engine := gin.New()
 	engine.Use(gin.Recovery(), middleware.Request(), middleware.Logger(debug), xtrace.TraceLogger())
 	internal.Init(engine)

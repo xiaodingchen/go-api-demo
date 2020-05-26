@@ -11,11 +11,12 @@ type LogConfig struct {
 	Level       int32
 	OutputPaths []string
 	Dev         bool
+
 }
 
 var loggers []*zap.Logger
 
-func NewZap(cfg *LogConfig) (log *zap.Logger, err error) {
+func NewZap(name string, cfg *LogConfig) (log *zap.Logger, err error) {
 	var (
 		zcfg zap.Config
 	)
@@ -34,6 +35,7 @@ func NewZap(cfg *LogConfig) (log *zap.Logger, err error) {
 
 	log = zap.New(newCore).WithOptions(zap.AddCaller())
 	loggers = append(loggers, log)
+	utils.SetLog(name, log)
 	return
 }
 

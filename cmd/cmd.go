@@ -60,12 +60,11 @@ func initLogger() {
 		OutputPaths: viper.GetStringSlice("log.outputPaths"),
 		Dev:         viper.GetBool("log.dev"),
 	}
-	logger, err := xzap.NewZap(cfg)
+	_, err := xzap.NewZap(utils.DefaultLoggerName, cfg)
 	if err != nil {
 		log.Fatalln("init logger err", err)
 	}
 
-	utils.SetLog(logger)
 	xzap.Async()
 }
 

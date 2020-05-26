@@ -4,16 +4,27 @@ import (
 	"go.uber.org/zap"
 )
 
-var log *zap.Logger
+var logs map[string]*zap.Logger
 
-func Log() *zap.Logger {
-	return log
+const (
+	DefaultLoggerName = "default"
+	ApiLoggerName = "api"
+	JaegerLoggerName = "jaeger"
+)
+
+func Log(name... string) *zap.Logger {
+	if len(name) == 0{
+		name = []string{DefaultLoggerName}
+	}
+
+	return logs[name[0]]
 }
 
-func SetLog(logger *zap.Logger) {
-	log = logger
+func SetLog(name string, logger *zap.Logger) {
+	if logs == nil{
+		logs = make(map[string]*zap.Logger)
+	}
+
+	logs[name] = logger
 }
 
-func RequestLogger() {
-
-}

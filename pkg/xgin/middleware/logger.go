@@ -39,7 +39,7 @@ var LoggerSkipPaths []string
 
 func Logger(debug bool) gin.HandlerFunc {
 	f := gin.LoggerWithConfig(gin.LoggerConfig{
-		Formatter: LogFormatter,
+		//Formatter: LogFormatter,
 		SkipPaths: LoggerSkipPaths,
 	})
 
@@ -53,7 +53,7 @@ func Logger(debug bool) gin.HandlerFunc {
 		Dev:         true,
 	}
 
-	logger, err := xzap.NewZap(cfg)
+	logger, err := xzap.NewZap(utils.ApiLoggerName, cfg)
 	if err != nil {
 		utils.Log().Error("[GIN] set logger err", zap.Error(err))
 		return f

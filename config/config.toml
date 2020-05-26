@@ -7,7 +7,7 @@ env = "prd"
 	readTimeout = 5000
 	writeTimeout = 10000
 	max_concurrency = 300
-	debug = false
+	debug = true
 
 [log]
 	level = -1

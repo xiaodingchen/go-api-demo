@@ -70,7 +70,7 @@ func newjaegerLog(jaegerLogPath string) *jaegerLog {
 
 	j := &jaegerLog{}
 
-	logger, err := xzap.NewZap(cfg)
+	logger, err := xzap.NewZap(utils.JaegerLoggerName, cfg)
 	if err != nil {
 		utils.Log().Error("[jaeger] set logger err", zap.Error(err))
 	}
