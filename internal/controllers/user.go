@@ -18,7 +18,7 @@ func NewUser() *User {
 
 func (u *User) Index(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "/user/index")
-	client := utils.Redis(utils.DefaultRedis)
+	client := utils.Redis(utils.RedisDefault)
 	if client == nil{
 		utils.Log().Error("redis client nil")
 		return

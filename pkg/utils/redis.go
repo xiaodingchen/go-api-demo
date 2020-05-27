@@ -7,7 +7,7 @@ import (
 var redisClientMap map[string]*redis.Client
 
 const (
-    DefaultRedis = "default"
+    RedisDefault = "default"
 )
 
 func Redis(name string) *redis.Client{

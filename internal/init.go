@@ -13,7 +13,7 @@ func Init(g *gin.Engine) {
 	controllers.Init()
 	routes.InitRoutes(g)
 	// 初始化redis
-	_, err := xredis.NewClient(utils.DefaultRedis)
+	_, err := xredis.NewClient(utils.RedisDefault)
 	if err != nil{
 		utils.Log().Error("init redis client err", zap.Error(err))
 	}
