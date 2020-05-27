@@ -16,7 +16,17 @@ env = "prd"
 	requestLog = "/data/log/api.log"
 	traceLog = "/data/log/trace.log"
 	trace_rate = 1
-
+[redis]
+	[redis.default]
+		addr = "127.0.0.1:6379"
+		password = ""
+		db = 0
+		maxRetries = 1
+		poolSize=500
+		minIdleConns=5
+		dialTimeout = 300
+		readTimeout = 500
+		writeTimeout = 500
 
 
 

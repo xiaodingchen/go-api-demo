@@ -12,7 +12,6 @@ import (
 	"test.local/internal"
 	"test.local/pkg/utils"
 	"test.local/pkg/xgin/middleware"
-	"test.local/pkg/xtrace"
 	"time"
 )
 
@@ -44,7 +43,7 @@ func prog(state overseer.State) {
 	}
 	//gin.DefaultWriter = new(utils.DefaultGinWriter)
 	engine := gin.New()
-	engine.Use(gin.Recovery(), middleware.Request(), middleware.Logger(debug), xtrace.TraceLogger())
+	engine.Use(gin.Recovery(), middleware.Request(), middleware.Logger(debug), middleware.TraceLogger())
 	internal.Init(engine)
 
 	srv := http.Server{
