@@ -44,12 +44,18 @@ func prog(state overseer.State) {
 	//gin.DefaultWriter = new(utils.DefaultGinWriter)
 	engine := gin.New()
 	engine.Use(gin.Recovery(), middleware.Request(), middleware.Logger(debug), middleware.TraceLogger())
-	internal.Init(engine)
+	err := internal.InitApi(engine)
+	if err != nil{
+		log.Fatalln("api service fatal:", err.Error())
+	}
 
 	srv := http.Server{
 		Handler:      engine,
 		ReadTimeout:  viper.GetDuration("server.readTimeout") * time.Millisecond,
 		WriteTimeout: viper.GetDuration("server.writeTimeout") * time.Millisecond,
 	}
-	srv.Serve(state.Listener)
+	err = srv.Serve(state.Listener)
+	if err != nil{
+		log.Fatalln("api service fatal:", err.Error())
+	}
 }
