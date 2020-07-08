@@ -58,9 +58,11 @@ func (h *Hub) Run() {
 			for client := range h.clients {
 				select {
 				case client.send <- message:
+					log.Println("send mess", string(message))
 				default:
 					close(client.send)
 					delete(h.clients, client)
+					log.Println("run mess", message)
 				}
 			}
 
@@ -91,6 +93,7 @@ func (c *Client) writePump(){
 	for  {
 		select {
 		case messge, ok := <-c.send:
+			log.Println("websocket write msg", string(messge))
 			c.conn.SetWriteDeadline(time.Now().Add(writeWait))
 			if !ok{
 				c.conn.WriteMessage(websocket.CloseMessage, []byte{})
