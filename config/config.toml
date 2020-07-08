@@ -3,12 +3,14 @@ name = "testLocal"
 env = "prd"
 
 [server]
-	addr = ":8888"
+	addr = ":30000"
 	readTimeout = 5000
 	writeTimeout = 10000
 	max_concurrency = 300
 	debug = true
 
+[template]
+	dir = "/mnt/c/work/goproject/github.com/xiaodingchen/go-api-demo/internal/template"
 [log]
 	level = -1
 	outputPaths = ["stdout"]

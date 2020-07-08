@@ -19,4 +19,9 @@ func InitRoutes(g *gin.Engine) {
 	xpprof.GinRegister(g)
 	// 处理业务路由
 	g.GET("/user/index", controllers.Ctrl.User.Index)
+
+	g.GET("/ws/echo", controllers.Ctrl.Ws.Echo)
+	g.GET("/ws/index", controllers.Ctrl.Ws.Index)
+	g.GET("ws/chat", controllers.Ctrl.Ws.Chat)
+	g.GET("ws/chat_ws", controllers.Ctrl.Ws.ChatWs)
 }

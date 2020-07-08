@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"test.local/internal/controllers"
 	"test.local/internal/routes"
+	"test.local/internal/service"
 	"test.local/pkg/utils"
 	"test.local/pkg/xredis"
 )
@@ -20,6 +21,9 @@ func InitApi(g *gin.Engine) error {
 	if err != nil{
 		return err
 	}
+	// 初始化socket
+	initWebsocket()
+
 	controllers.Init()
 	routes.InitRoutes(g)
 	return nil
@@ -33,4 +37,8 @@ func initRedis() error {
 
 func initDB()error{
 	return nil
+}
+
+func initWebsocket(){
+	service.InitHub()
 }

@@ -6,6 +6,7 @@ require (
 	github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-redis/redis v6.15.8+incompatible
+	github.com/gorilla/websocket v1.4.0
 	github.com/jpillora/overseer v1.1.4
 	github.com/onsi/ginkgo v1.12.2 // indirect
 	github.com/opentracing/opentracing-go v1.1.0
